@@ -4,6 +4,7 @@ import hospital from "../assets/hospital1.png";
 import network from "../assets/network.png";
 import restaurant from "../assets/food.png";
 import spotify from "../assets/spotify.png";
+import buildora from "../assets/buildora.png";
 
 
 export const projects = [
@@ -14,6 +15,15 @@ export const projects = [
     tech: "MERN Stack",
     github: "https://github.com/Diptadeep-21/Glide-Way",
     image: bus,
+  },
+  {
+    title: "Buildora",
+    description:
+      "AI-powered platform that dynamically generates full-stack internal business applications from natural language prompts and JSON configurations.",
+    tech: "Next.js + Prisma ORM + PostgreSQL + Groque LLM",
+    github:
+      "https://github.com/Diptadeep-21/Accessible-Learning-Platform-for-Visually-Impaired",
+    image: buildora,
   },
   {
     title: "Accessible Learning Platform",
