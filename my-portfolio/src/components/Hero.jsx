@@ -306,7 +306,7 @@ export default function Hero() {
         {/* Badge */}
         <motion.div className="badge" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <span className="badge-dot"></span>
-          Available for opportunities · KIIT CSE · 2025
+          Available for opportunities · KIIT CSE · 2023-2027
         </motion.div>
 
         {/* Title */}
