@@ -3,6 +3,11 @@ import { useState, useEffect } from "react";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [today] = useState(() => {
+    return new Date().toLocaleDateString("en-GB", {
+      weekday: "long", day: "numeric", month: "long", year: "numeric"
+    });
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -15,110 +20,168 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=EB+Garamond:wght@400;500&family=DM+Mono:wght@400;500&display=swap');
 
-        .nav-link {
-          position: relative;
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.8rem;
-          font-weight: 500;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.55);
-          transition: color 0.3s;
-          text-decoration: none;
+        :root {
+          --ink: #1a1208;
+          --ink-2: #3d3425;
+          --ink-3: #6b5f4e;
+          --paper: #f5f0e8;
+          --paper-2: #ede7d9;
+          --paper-3: #e0d8c8;
+          --rule: #c8bfa8;
+          --accent: #8b1a1a;
+          --accent-2: #c0392b;
         }
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 1px;
-          background: linear-gradient(90deg, #a78bfa, #f472b6);
-          transition: width 0.3s ease;
-        }
-        .nav-link:hover { color: #fff; }
-        .nav-link:hover::after { width: 100%; }
 
-        .nav-resume {
-          display: inline-flex;
+        * { box-sizing: border-box; }
+
+        .ed-nav {
+          position: fixed;
+          top: 0; left: 0; right: 0;
+          z-index: 100;
+          background: var(--paper);
+          transition: box-shadow 0.3s;
+          font-family: 'EB Garamond', serif;
+        }
+        .ed-nav.scrolled {
+          box-shadow: 0 1px 0 var(--rule), 0 4px 24px rgba(26,18,8,0.08);
+        }
+
+        .nav-dateline {
+          border-bottom: 1px solid var(--rule);
+          padding: 5px 2rem;
+          display: flex;
           align-items: center;
-          gap: 7px;
-          padding: 7px 16px;
-          border-radius: 100px;
-          border: 1px solid rgba(255,255,255,0.15);
-          background: rgba(255,255,255,0.04);
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.78rem;
-          font-weight: 600;
+          justify-content: space-between;
+          font-size: 0.68rem;
+          color: var(--ink-3);
           letter-spacing: 0.06em;
-          color: rgba(255,255,255,0.65);
+          text-transform: uppercase;
+          font-family: 'DM Mono', monospace;
+        }
+
+        .nav-main {
+          padding: 0 2rem;
+          border-bottom: 3px double var(--ink);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2rem;
+          height: 64px;
+        }
+
+        .nav-logo-block {
           text-decoration: none;
-          cursor: pointer;
-          transition: all 0.25s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          line-height: 1;
+        }
+        .nav-logo-name {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.6rem;
+          font-weight: 900;
+          color: var(--ink);
+          letter-spacing: -0.02em;
+          line-height: 1;
+        }
+        .nav-logo-sub {
+          font-size: 0.6rem;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--ink-3);
+          font-family: 'DM Mono', monospace;
+          margin-top: 1px;
+        }
+
+        .nav-links {
+          display: flex;
+          align-items: center;
+          gap: 0;
+          height: 100%;
+        }
+        .nav-link {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.7rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--ink-2);
+          text-decoration: none;
+          padding: 0 1.1rem;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          border-left: 1px solid var(--rule);
+          transition: background 0.2s, color 0.2s;
+        }
+        .nav-link:hover {
+          background: var(--paper-2);
+          color: var(--accent);
+        }
+
+        .nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          height: 100%;
+        }
+        .nav-resume {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.68rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--ink-2);
+          text-decoration: none;
+          padding: 6px 14px;
+          border: 1px solid var(--ink-2);
+          transition: all 0.2s;
         }
         .nav-resume:hover {
-          border-color: rgba(255,255,255,0.3);
-          background: rgba(255,255,255,0.08);
-          color: #fff;
-          transform: translateY(-1px);
+          background: var(--ink);
+          color: var(--paper);
         }
-        .nav-resume svg {
-          flex-shrink: 0;
-          transition: transform 0.25s;
-        }
-        .nav-resume:hover svg {
-          transform: translateY(2px);
-        }
-
         .nav-hire {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 7px 18px;
-          border-radius: 100px;
-          background: linear-gradient(135deg, rgba(167,139,250,0.18), rgba(244,114,182,0.14));
-          border: 1px solid rgba(167,139,250,0.35);
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.78rem;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          color: #c4b5fd;
-          cursor: pointer;
-          transition: all 0.25s ease;
+          font-family: 'DM Mono', monospace;
+          font-size: 0.68rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--paper);
+          background: var(--accent);
           text-decoration: none;
+          padding: 7px 16px;
+          transition: background 0.2s;
         }
-        .nav-hire:hover {
-          background: linear-gradient(135deg, rgba(167,139,250,0.3), rgba(244,114,182,0.22));
-          border-color: rgba(167,139,250,0.6);
-          color: #fff;
-          transform: translateY(-1px);
-          box-shadow: 0 4px 20px rgba(167,139,250,0.2);
-        }
+        .nav-hire:hover { background: var(--accent-2); }
 
+        .hamburger {
+          display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
+          flex-direction: column;
+          gap: 5px;
+          padding: 4px;
+        }
         .hamburger span {
           display: block;
-          width: 22px;
+          width: 20px;
           height: 1.5px;
-          background: rgba(255,255,255,0.7);
-          margin: 5px 0;
+          background: var(--ink);
           transition: all 0.3s;
         }
 
         .mobile-menu {
+          display: none;
           position: fixed;
-          top: 64px;
-          left: 0;
-          right: 0;
-          background: rgba(7,5,20,0.97);
-          backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(167,139,250,0.12);
-          padding: 1.5rem 2rem 2rem;
-          z-index: 49;
-          display: flex;
+          top: 107px; left: 0; right: 0;
+          background: var(--paper);
+          border-top: 1px solid var(--rule);
+          border-bottom: 3px double var(--ink);
+          padding: 1rem 2rem 1.5rem;
           flex-direction: column;
-          gap: 1.2rem;
+          gap: 1rem;
+          z-index: 99;
           transform: translateY(-110%);
           opacity: 0;
           transition: all 0.32s ease;
@@ -129,130 +192,57 @@ export default function Navbar() {
           opacity: 1;
           pointer-events: all;
         }
-        .mobile-divider {
-          height: 1px;
-          background: rgba(255,255,255,0.06);
-          margin: 0.4rem 0;
-        }
-        .mobile-resume {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.88rem;
-          font-weight: 600;
-          color: rgba(255,255,255,0.45);
+        .mobile-nav-link {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.85rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--ink-2);
           text-decoration: none;
-          letter-spacing: 0.04em;
+          padding: 8px 0;
+          border-bottom: 1px solid var(--paper-3);
         }
-        .mobile-hire {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.88rem;
-          font-weight: 600;
-          color: #c4b5fd;
-          text-decoration: none;
-          letter-spacing: 0.04em;
-        }
+        .mobile-nav-link:hover { color: var(--accent); }
 
         @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-        }
-        @media (min-width: 769px) {
-          .show-mobile { display: none !important; }
+          .nav-links, .nav-actions { display: none; }
+          .hamburger { display: flex; }
+          .mobile-menu { display: flex; }
         }
       `}</style>
 
-      <nav style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        padding: "0 2rem",
-        height: "64px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        background: scrolled ? "rgba(7,5,20,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(167,139,250,0.08)" : "1px solid transparent",
-        transition: "all 0.4s ease",
-      }}>
-
-        {/* Logo */}
-        <a href="#" style={{ textDecoration: "none" }}>
-          <span style={{
-            fontFamily: "'Syne', sans-serif",
-            fontSize: "1.25rem",
-            fontWeight: 800,
-            background: "linear-gradient(135deg, #e2d9ff, #f9a8d4)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            letterSpacing: "-0.02em",
-          }}>DS</span>
-        </a>
-
-        {/* Desktop nav */}
-        <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: "2.2rem" }}>
-          {links.map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="nav-link">{l}</a>
-          ))}
+      <nav className={`ed-nav ${scrolled ? "scrolled" : ""}`}>
+        <div className="nav-dateline">
+          <span>{today}</span>
+          <span>Vol. III · KIIT CSE, Bhubaneswar</span>
+          <span>Full-Stack Engineering · Est. 2022</span>
         </div>
-
-        {/* Desktop CTAs */}
-        <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          {/* Resume download */}
-          <a href="/resume.pdf" download="Diptadeep_Sinha_Resume.pdf" className="nav-resume">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-              <path d="M6.5 1v7M6.5 8l-2.5-2.5M6.5 8l2.5-2.5M1.5 10.5h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Resume
+        <div className="nav-main">
+          <a href="#" className="nav-logo-block">
+            <span className="nav-logo-name">Diptadeep Sinha</span>
+            <span className="nav-logo-sub">Software Engineer · Portfolio</span>
           </a>
-          {/* Hire me */}
-          <a href="mailto:sinhadiptadeep@gmail.com" className="nav-hire">
-            Hire me ✦
-          </a>
+          <div className="nav-links">
+            {links.map(l => (
+              <a key={l} href={`#${l.toLowerCase()}`} className="nav-link">{l}</a>
+            ))}
+          </div>
+          <div className="nav-actions">
+            <a href="/resume.pdf" download="Diptadeep_Sinha_Resume.pdf" className="nav-resume">↓ Resume</a>
+            <a href="mailto:sinhadiptadeep@gmail.com" className="nav-hire">Hire me</a>
+          </div>
+          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
         </div>
-
-        {/* Hamburger */}
-        <button
-          className="show-mobile hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
-          aria-label="Toggle menu"
-        >
-          <span style={{ opacity: menuOpen ? 0 : 1 }}></span>
-          <span></span>
-          <span style={{ opacity: menuOpen ? 0 : 1 }}></span>
-        </button>
       </nav>
 
-      {/* Mobile menu */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         {links.map(l => (
-          <a
-            key={l}
-            href={`#${l.toLowerCase()}`}
-            className="nav-link"
-            style={{ fontSize: "1rem" }}
-            onClick={() => setMenuOpen(false)}
-          >
-            {l}
-          </a>
+          <a key={l} href={`#${l.toLowerCase()}`} className="mobile-nav-link" onClick={() => setMenuOpen(false)}>{l}</a>
         ))}
-        <div className="mobile-divider" />
-        <a href="/resume.pdf" download="Diptadeep_Sinha_Resume.pdf" className="mobile-resume" onClick={() => setMenuOpen(false)}>
-          <svg width="14" height="14" viewBox="0 0 13 13" fill="none">
-            <path d="M6.5 1v7M6.5 8l-2.5-2.5M6.5 8l2.5-2.5M1.5 10.5h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          Download Resume
-        </a>
-        <a href="mailto:sinhadiptadeep@gmail.com" className="mobile-hire" onClick={() => setMenuOpen(false)}>
-          ✦ Hire me
-        </a>
+        <a href="/resume.pdf" download className="mobile-nav-link">↓ Download Resume</a>
+        <a href="mailto:sinhadiptadeep@gmail.com" className="mobile-nav-link" style={{ color: "var(--accent)" }}>Hire me →</a>
       </div>
     </>
   );

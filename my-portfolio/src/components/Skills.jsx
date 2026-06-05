@@ -3,9 +3,6 @@ import { motion } from "framer-motion";
 const SKILL_GROUPS = [
   {
     title: "Languages",
-    accent: "#a78bfa",
-    bg: "rgba(167,139,250,0.08)",
-    border: "rgba(167,139,250,0.2)",
     skills: [
       { name: "Java", icon: "devicon-java-plain colored" },
       { name: "C", icon: "devicon-c-plain colored" },
@@ -16,9 +13,6 @@ const SKILL_GROUPS = [
   },
   {
     title: "Frontend",
-    accent: "#60a5fa",
-    bg: "rgba(96,165,250,0.08)",
-    border: "rgba(96,165,250,0.2)",
     skills: [
       { name: "React", icon: "devicon-react-original colored" },
       { name: "Next.js", icon: "devicon-nextjs-original" },
@@ -28,9 +22,6 @@ const SKILL_GROUPS = [
   },
   {
     title: "Backend",
-    accent: "#38bdf8",
-    bg: "rgba(56,189,248,0.08)",
-    border: "rgba(56,189,248,0.2)",
     skills: [
       { name: "Node.js", icon: "devicon-nodejs-plain colored" },
       { name: "Express", icon: "devicon-express-original" },
@@ -42,9 +33,6 @@ const SKILL_GROUPS = [
   },
   {
     title: "Databases",
-    accent: "#34d399",
-    bg: "rgba(52,211,153,0.08)",
-    border: "rgba(52,211,153,0.2)",
     skills: [
       { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
       { name: "MySQL", icon: "devicon-mysql-plain colored" },
@@ -52,21 +40,15 @@ const SKILL_GROUPS = [
   },
   {
     title: "Core CS",
-    accent: "#f59e0b",
-    bg: "rgba(245,158,11,0.08)",
-    border: "rgba(245,158,11,0.2)",
     skills: [
       { name: "DSA", icon: "devicon-codeforces-plain" },
-      { name: "OS", icon: "devicon-linux-plain" },
+      { name: "Operating Systems", icon: "devicon-linux-plain" },
       { name: "DBMS", icon: "devicon-docker-plain" },
       { name: "Networks", icon: "devicon-networkx-plain" },
     ],
   },
   {
     title: "Tools & APIs",
-    accent: "#f472b6",
-    bg: "rgba(244,114,182,0.08)",
-    border: "rgba(244,114,182,0.2)",
     skills: [
       { name: "Git", icon: "devicon-git-plain colored" },
       { name: "GitHub", icon: "devicon-github-original" },
@@ -81,225 +63,251 @@ export default function Skills() {
     <>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap');
+
         .skills-section {
-          background: #07051a;
-          padding: 8rem 1.5rem;
-          position: relative;
-          overflow: hidden;
-          font-family: 'Space Grotesk', sans-serif;
+          background: var(--paper-2);
+          font-family: 'EB Garamond', serif;
+          border-bottom: 3px double var(--ink);
         }
-        .skills-section::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background-image:
-            radial-gradient(circle at 20% 80%, rgba(96,165,250,0.06) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(167,139,250,0.06) 0%, transparent 50%);
-          pointer-events: none;
-        }
-        .section-label {
-          display: inline-flex;
+
+        .skills-section-header {
+          border-bottom: 3px double var(--ink);
+          border-top: 3px double var(--ink);
+          padding: 1.2rem 2rem;
+          display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 0.7rem;
-          font-weight: 600;
+          gap: 1.5rem;
+        }
+
+        .skills-broadsheet-layout {
+          display: grid;
+          grid-template-columns: 200px 1fr;
+          min-height: 400px;
+        }
+        @media (max-width: 768px) {
+          .skills-broadsheet-layout { grid-template-columns: 1fr; }
+          .skills-index-col { border-right: none !important; border-bottom: 1px solid var(--rule); }
+        }
+
+        .skills-index-col {
+          border-right: 1px solid var(--rule);
+          padding: 2rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+        .skills-index-heading {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.58rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: #a78bfa;
+          color: var(--ink-3);
+          padding-bottom: 6px;
+          border-bottom: 1px solid var(--rule);
           margin-bottom: 1rem;
         }
-        .section-label::before {
-          content: '';
+        .skills-index-item {
+          font-family: 'Playfair Display', serif;
+          font-size: 0.88rem;
+          font-style: italic;
+          color: var(--ink-2);
+          padding: 5px 8px;
+          border-left: 2px solid transparent;
+          cursor: pointer;
+          transition: all 0.2s;
+          text-decoration: none;
           display: block;
-          width: 24px;
-          height: 1px;
-          background: #a78bfa;
         }
-        .skills-title {
-          font-family: 'Syne', sans-serif;
-          font-size: clamp(2rem, 4vw, 3.5rem);
-          font-weight: 800;
-          line-height: 1.1;
-          letter-spacing: -0.03em;
-          color: #fff;
+        .skills-index-item:hover {
+          color: var(--accent);
+          border-left-color: var(--accent);
+          background: var(--paper-3);
         }
-        .skills-title em {
-          font-style: normal;
-          background: linear-gradient(135deg, #a78bfa, #60a5fa);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+
+        .skills-main-col {
+          padding: 2rem 2.5rem;
         }
-        .skills-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 16px;
-          margin-top: 3.5rem;
-          max-width: 1100px;
-          margin-left: auto;
-          margin-right: auto;
+
+        .skills-table {
+          width: 100%;
+          border-collapse: collapse;
         }
-        .skill-card {
-          border-radius: 20px;
-          padding: 1.75rem;
-          border: 1px solid rgba(255,255,255,0.06);
-          background: rgba(255,255,255,0.025);
-          backdrop-filter: blur(10px);
-          transition: transform 0.3s, border-color 0.3s, background 0.3s;
-          position: relative;
-          overflow: hidden;
+        .skills-table-row {
+          border-bottom: 1px solid var(--rule);
+          transition: background 0.15s;
         }
-        .skill-card::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 80px;
-          height: 80px;
-          background: radial-gradient(circle, var(--card-accent, #a78bfa22), transparent 70%);
-          opacity: 0;
-          transition: opacity 0.3s;
-        }
-        .skill-card:hover::after { opacity: 1; }
-        .skill-card:hover {
-          transform: translateY(-4px);
-          border-color: var(--card-border, rgba(167,139,250,0.25));
-          background: rgba(255,255,255,0.035);
-        }
-        .card-title {
-          font-family: 'Syne', sans-serif;
-          font-size: 0.85rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
+        .skills-table-row:hover { background: var(--paper-3); }
+        .skills-table-row:last-child { border-bottom: none; }
+        .skills-table-cat {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.6rem;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
-          margin-bottom: 1.25rem;
-          padding-bottom: 0.75rem;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
+          color: var(--ink-3);
+          padding: 1.2rem 1rem 1.2rem 0;
+          vertical-align: top;
+          white-space: nowrap;
+          width: 110px;
+          border-right: 1px solid var(--rule);
         }
-        .skill-chips {
+        .skills-table-chips {
+          padding: 1rem 0 1rem 1.5rem;
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
+          gap: 6px;
+          align-items: center;
+          vertical-align: middle;
         }
-        .skill-chip {
+        .skill-chip-ed {
           display: flex;
           align-items: center;
-          gap: 7px;
-          padding: 7px 13px;
-          border-radius: 8px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.07);
-          font-size: 0.82rem;
-          color: rgba(255,255,255,0.65);
+          gap: 6px;
+          padding: 5px 12px;
+          border: 1px solid var(--rule);
+          background: var(--paper);
+          font-family: 'EB Garamond', serif;
+          font-size: 0.88rem;
+          color: var(--ink-2);
           transition: all 0.2s;
+          cursor: default;
         }
-        .skill-chip:hover {
-          background: rgba(255,255,255,0.08);
-          color: #fff;
-          border-color: rgba(255,255,255,0.15);
+        .skill-chip-ed:hover {
+          border-color: var(--ink);
+          background: var(--ink);
+          color: var(--paper);
         }
-        .skill-chip i { font-size: 1.1rem; }
-        .skills-footer {
-          max-width: 1100px;
-          margin: 2.5rem auto 0;
-          padding: 2rem 2.5rem;
-          background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(236,72,153,0.1));
-          border: 1px solid rgba(167,139,250,0.2);
-          border-radius: 20px;
+        .skill-chip-ed:hover i { filter: brightness(10); }
+        .skill-chip-ed i { font-size: 1rem; }
+
+        .skills-footer-band {
+          border-top: 3px double var(--ink);
+          padding: 1.5rem 2.5rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
           flex-wrap: wrap;
           gap: 1rem;
+          background: var(--ink);
+          color: var(--paper-2);
         }
-        .footer-text {
+        .skills-footer-text {
+          font-family: 'EB Garamond', serif;
           font-size: 1rem;
-          font-weight: 600;
-          color: #fff;
+          font-style: italic;
         }
-        .footer-sub {
-          font-size: 0.85rem;
-          color: rgba(255,255,255,0.45);
-          margin-top: 4px;
+        .skills-footer-text strong {
+          font-style: normal;
+          font-weight: 700;
+          color: var(--paper);
         }
-        .footer-stat {
-          text-align: right;
+        .skills-footer-stats {
+          display: flex;
+          gap: 2.5rem;
         }
-        .footer-stat-num {
-          font-family: 'Syne', sans-serif;
-          font-size: 2.5rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, #a78bfa, #f472b6);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+        .skills-footer-stat { text-align: right; }
+        .skills-footer-stat-num {
+          font-family: 'Playfair Display', serif;
+          font-size: 2rem;
+          font-weight: 900;
+          color: var(--paper);
           line-height: 1;
+          letter-spacing: -0.02em;
         }
-        .footer-stat-label {
-          font-size: 0.72rem;
-          color: rgba(255,255,255,0.35);
-          letter-spacing: 0.1em;
+        .skills-footer-stat-lbl {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.58rem;
+          letter-spacing: 0.15em;
           text-transform: uppercase;
+          color: rgba(245,240,232,0.45);
+          margin-top: 2px;
         }
       `}</style>
 
       <section className="skills-section" id="skills">
-        <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center", marginBottom: "0" }}>
-          <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className="section-label">Technical arsenal</div>
-            <h2 className="skills-title">My <em>Skillset</em></h2>
-            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.95rem", marginTop: "0.75rem", maxWidth: 480, margin: "0.75rem auto 0" }}>
-              Technologies and concepts I use to architect scalable, production-ready systems
-            </p>
-          </motion.div>
+        {/* Header */}
+        <div className="skills-section-header">
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--ink-3)" }}>Technical Arsenal</span>
+          <div style={{ flex: 1, height: 1, background: "var(--rule)" }}></div>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 900, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1 }}>
+            My <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Skillset</em>
+          </h2>
+          <div style={{ flex: 1, height: 1, background: "var(--rule)" }}></div>
         </div>
 
-        <div className="skills-grid">
-          {SKILL_GROUPS.map((group, i) => (
-            <motion.div
-              key={group.title}
-              className="skill-card"
-              style={{ "--card-accent": group.bg, "--card-border": group.border }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+        <div className="skills-broadsheet-layout">
+          {/* Index column */}
+          <div className="skills-index-col">
+            <div className="skills-index-heading">Disciplines</div>
+            {SKILL_GROUPS.map(g => (
+              <a key={g.title} className="skills-index-item" href={`#skill-${g.title.toLowerCase()}`}>
+                {g.title}
+              </a>
+            ))}
+            <div style={{ marginTop: "auto", paddingTop: "2rem" }}>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: "0.4rem" }}>Total skills</div>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "2.2rem", fontWeight: 900, color: "var(--ink)", lineHeight: 1 }}>
+                {SKILL_GROUPS.reduce((sum, g) => sum + g.skills.length, 0)}
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "var(--ink-3)", fontStyle: "italic" }}>technologies</div>
+            </div>
+          </div>
+
+          {/* Main table */}
+          <div className="skills-main-col">
+            <motion.table
+              className="skills-table"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
             >
-              <div className="card-title" style={{ color: group.accent }}>
-                {group.title}
-              </div>
-              <div className="skill-chips">
-                {group.skills.map(s => (
-                  <div key={s.name} className="skill-chip">
-                    <i className={s.icon}></i>
-                    {s.name}
-                  </div>
+              <tbody>
+                {SKILL_GROUPS.map((group, i) => (
+                  <motion.tr
+                    key={group.title}
+                    id={`skill-${group.title.toLowerCase()}`}
+                    className="skills-table-row"
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.07 }}
+                  >
+                    <td className="skills-table-cat">{group.title}</td>
+                    <td>
+                      <div className="skills-table-chips">
+                        {group.skills.map(s => (
+                          <span key={s.name} className="skill-chip-ed">
+                            <i className={s.icon}></i>
+                            {s.name}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+                  </motion.tr>
                 ))}
-              </div>
-            </motion.div>
-          ))}
+              </tbody>
+            </motion.table>
+          </div>
         </div>
 
-        <motion.div
-          className="skills-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
+        {/* Footer band */}
+        <div className="skills-footer-band">
           <div>
-            <div className="footer-text">Strong in problem-solving & system design</div>
-            <div className="footer-sub">Proven across academic projects, hackathons & personal builds</div>
-          </div>
-          <div style={{ display: "flex", gap: "2.5rem" }}>
-            <div className="footer-stat">
-              <div className="footer-stat-num">350+</div>
-              <div className="footer-stat-label">DSA Problems</div>
-            </div>
-            <div className="footer-stat">
-              <div className="footer-stat-num">5+</div>
-              <div className="footer-stat-label">Systems Built</div>
+            <div className="skills-footer-text">
+              <strong>Strong in problem-solving & system design</strong> — proven across academic projects, hackathons & personal builds.
             </div>
           </div>
-        </motion.div>
+          <div className="skills-footer-stats">
+            <div className="skills-footer-stat">
+              <div className="skills-footer-stat-num">350+</div>
+              <div className="skills-footer-stat-lbl">DSA Problems</div>
+            </div>
+            <div className="skills-footer-stat">
+              <div className="skills-footer-stat-num">5+</div>
+              <div className="skills-footer-stat-lbl">Systems Built</div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );

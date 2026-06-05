@@ -5,21 +5,29 @@ import busImg from "../assets/bus.jpg";
 import learnImg from "../assets/learning.jpg";
 import hospitalImg from "../assets/hospital.jpg";
 import buildora from "../assets/buildora1.png";
+import merchanta from "../assets/merchantaAI.png";
 
 const PROJECTS = [
+  { title: "Merchanta AI", img: merchanta, tag: "AI-Optimizer" },
   { title: "Glide-Way", img: busImg, tag: "Real-time" },
   { title: "Buildora", img: buildora, tag: "SaaS" },
   { title: "Accessible Learning Platform", img: learnImg, tag: "A11y" },
   { title: "SmartClinic Queue", img: hospitalImg, tag: "Healthcare" },
-  { title: "Network Intrusion Detection", tag: "ML/Security",
-    img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=800&auto=format&fit=crop" },
-  { title: "Restaurant Management System", tag: "Full-stack",
-    img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" },
-  { title: "Soft Tunes", tag: "Media",
-    img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop" },
+  {
+    title: "Network Intrusion Detection", tag: "ML/Security",
+    img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Restaurant Management System", tag: "Full-stack",
+    img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Soft Tunes", tag: "Media",
+    img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+  },
 ];
 
-const ROLES = ["Full-Stack Developer", "MERN Stack Engineer", "Problem Solver", "System Architect"];
+const ROLES = ["Full-Stack Developer", "MERN Stack Engineer", "System Architect", "Problem Solver"];
 
 export default function Hero() {
   const roleRef = useRef(null);
@@ -31,337 +39,473 @@ export default function Hero() {
     el.textContent = ROLES[0];
     const cycle = () => {
       el.style.opacity = 0;
-      el.style.transform = "translateY(8px)";
       setTimeout(() => {
         idx.current = (idx.current + 1) % ROLES.length;
         el.textContent = ROLES[idx.current];
         el.style.opacity = 1;
-        el.style.transform = "translateY(0)";
-      }, 400);
+      }, 350);
     };
-    const t = setInterval(cycle, 2800);
+    const t = setInterval(cycle, 3000);
     return () => clearInterval(t);
   }, []);
-
-  const handleProjectClick = (title) => {
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => {
-      document.getElementById(title.replace(/\s+/g, "-"))
-        ?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 500);
-  };
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap');
+
         .hero-section {
-          min-height: 100vh;
-          background: #07051a;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 100px 1.5rem 3rem;
+          background: var(--paper);
+          padding-top: 107px;
           position: relative;
           overflow: hidden;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'EB Garamond', serif;
         }
-        .hero-orb {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(80px);
-          pointer-events: none;
-        }
-        .grid-bg {
-          position: absolute;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(167,139,250,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(167,139,250,0.05) 1px, transparent 1px);
-          background-size: 60px 60px;
-          mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 20%, transparent 100%);
-        }
-        .badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 6px 14px;
-          border-radius: 100px;
-          border: 1px solid rgba(167,139,250,0.25);
-          background: rgba(167,139,250,0.08);
-          font-size: 0.75rem;
-          font-weight: 500;
-          color: #c4b5fd;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          margin-bottom: 2rem;
-        }
-        .badge-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #a78bfa;
-          box-shadow: 0 0 8px #a78bfa;
-          animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-        .hero-title {
-          font-family: 'Syne', sans-serif;
-          font-size: clamp(2.8rem, 7vw, 5.5rem);
-          font-weight: 800;
-          line-height: 1.05;
-          letter-spacing: -0.03em;
-          color: #fff;
+
+        /* ── Masthead ── */
+        .hero-masthead {
+          border-bottom: 3px double var(--ink);
+          padding: 3rem 2rem 2.5rem;
           text-align: center;
-          max-width: 900px;
-          margin: 0 auto;
+          position: relative;
         }
-        .hero-gradient-text {
-          background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #60a5fa 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+        .hero-edition {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.65rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--ink-3);
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.5rem;
         }
-        .role-cycle {
+        .hero-edition::before, .hero-edition::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: var(--rule);
+          max-width: 120px;
+        }
+        .hero-title-block {
+          position: relative;
           display: inline-block;
-          transition: opacity 0.3s ease, transform 0.3s ease;
-          color: #a78bfa;
+        }
+        .hero-name {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(4rem, 10vw, 8rem);
+          font-weight: 900;
+          color: var(--ink);
+          line-height: 0.92;
+          letter-spacing: -0.03em;
+          display: block;
+        }
+        .hero-title-line2 {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.8rem, 4vw, 3.2rem);
+          font-weight: 700;
+          font-style: italic;
+          color: var(--ink-2);
+          letter-spacing: -0.01em;
+          display: block;
+          margin-top: 0.15rem;
+        }
+        .hero-role-cycle {
+          color: var(--accent);
+          transition: opacity 0.35s ease;
           font-style: italic;
         }
-        .hero-sub {
-          max-width: 560px;
+        .hero-ornament {
+          font-size: 1.2rem;
+          color: var(--accent);
+          margin: 0.8rem auto;
+          letter-spacing: 0.5rem;
+          display: block;
           text-align: center;
-          color: rgba(255,255,255,0.45);
-          font-size: 1rem;
-          line-height: 1.7;
-          margin: 1.5rem auto 0;
         }
-        .hero-ctas {
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-          justify-content: center;
-          margin-top: 2.5rem;
+
+        /* ── Body layout ── */
+        .hero-body {
+          display: grid;
+          grid-template-columns: 220px 1fr 220px;
+          border-bottom: 1px solid var(--rule);
         }
-        .btn-primary {
-          padding: 12px 28px;
-          border-radius: 100px;
-          background: linear-gradient(135deg, #7c3aed, #ec4899);
-          color: #fff;
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.875rem;
-          font-weight: 600;
-          letter-spacing: 0.03em;
-          border: none;
-          cursor: pointer;
-          text-decoration: none;
-          transition: transform 0.2s, box-shadow 0.2s;
-          box-shadow: 0 4px 24px rgba(124,58,237,0.35);
+        @media (max-width: 900px) {
+          .hero-body { grid-template-columns: 1fr; }
+          .hero-sidebar { border-right: none !important; border-left: none !important; border-bottom: 1px solid var(--rule); }
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,58,237,0.5); }
-        .btn-ghost {
-          padding: 11px 28px;
-          border-radius: 100px;
-          border: 1px solid rgba(255,255,255,0.15);
-          background: rgba(255,255,255,0.04);
-          color: rgba(255,255,255,0.75);
-          font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.875rem;
-          font-weight: 500;
-          cursor: pointer;
-          text-decoration: none;
-          transition: all 0.2s;
-        }
-        .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: #fff; background: rgba(255,255,255,0.08); }
-        .stat-row {
-          display: flex;
-          gap: 2px;
-          justify-content: center;
-          margin-top: 3rem;
-          flex-wrap: wrap;
-        }
-        .stat-chip {
-          padding: 8px 20px;
-          border: 1px solid rgba(255,255,255,0.07);
-          background: rgba(255,255,255,0.03);
-          border-radius: 8px;
+
+        .hero-sidebar {
+          padding: 2rem 1.5rem;
           display: flex;
           flex-direction: column;
-          align-items: center;
+          gap: 1.5rem;
         }
-        .stat-num {
-          font-family: 'Syne', sans-serif;
-          font-size: 1.3rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, #e2d9ff, #f9a8d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+        .hero-sidebar-left { border-right: 1px solid var(--rule); }
+        .hero-sidebar-right { border-left: 1px solid var(--rule); }
+
+        .sidebar-heading {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.6rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--ink-3);
+          padding-bottom: 6px;
+          border-bottom: 1px solid var(--rule);
+          margin-bottom: 0.5rem;
         }
-        .stat-label {
-          font-size: 0.7rem;
-          color: rgba(255,255,255,0.35);
+        .sidebar-stat {
+          display: flex;
+          flex-direction: column;
+        }
+        .sidebar-stat-num {
+          font-family: 'Playfair Display', serif;
+          font-size: 2.2rem;
+          font-weight: 900;
+          color: var(--ink);
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+        .sidebar-stat-label {
+          font-size: 0.78rem;
+          color: var(--ink-3);
+          font-style: italic;
+          line-height: 1.3;
+        }
+        .sidebar-note {
+          font-size: 0.82rem;
+          color: var(--ink-2);
+          line-height: 1.65;
+        }
+        .sidebar-tag-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+        }
+        .sidebar-tag {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.6rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          margin-top: 2px;
+          padding: 3px 8px;
+          border: 1px solid var(--rule);
+          color: var(--ink-3);
         }
-        .projects-scroll {
-          width: 100%;
-          max-width: 1100px;
-          margin-top: 5rem;
-          overflow: hidden;
+
+        /* Center column */
+        .hero-center {
+          padding: 2.5rem 2.5rem;
+          border-right: 1px solid var(--rule);
+          border-left: 1px solid var(--rule);
           position: relative;
         }
-        .projects-scroll::before, .projects-scroll::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 80px;
-          z-index: 2;
-          pointer-events: none;
+        @media (max-width: 900px) {
+          .hero-center { border: none; border-bottom: 1px solid var(--rule); }
         }
-        .projects-scroll::before { left: 0; background: linear-gradient(90deg, #07051a, transparent); }
-        .projects-scroll::after { right: 0; background: linear-gradient(-90deg, #07051a, transparent); }
-        .projects-track {
+        .hero-lede {
+          font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+          line-height: 1.65;
+          color: var(--ink);
+          font-style: italic;
+          margin-bottom: 1.5rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid var(--rule);
+        }
+        .hero-lede strong {
+          font-style: normal;
+          font-weight: 700;
+          color: var(--ink);
+        }
+        .hero-drop-cap::first-letter {
+          font-family: 'Playfair Display', serif;
+          font-size: 4.2rem;
+          font-weight: 900;
+          line-height: 0.8;
+          float: left;
+          margin-right: 6px;
+          margin-top: 4px;
+          color: var(--ink);
+        }
+        .hero-body-text {
+          font-size: 0.95rem;
+          color: var(--ink-2);
+          line-height: 1.75;
+          column-count: 2;
+          column-gap: 2rem;
+          column-rule: 1px solid var(--rule);
+        }
+        @media (max-width: 640px) {
+          .hero-body-text { column-count: 1; }
+        }
+        .hero-cta-row {
           display: flex;
-          gap: 16px;
-          animation: scrollTrack 30s linear infinite;
+          gap: 12px;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+        }
+        .btn-ed-primary {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.72rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          padding: 10px 22px;
+          background: var(--ink);
+          color: var(--paper);
+          text-decoration: none;
+          border: 1px solid var(--ink);
+          transition: all 0.2s;
+        }
+        .btn-ed-primary:hover { background: var(--accent); border-color: var(--accent); }
+        .btn-ed-ghost {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.72rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          padding: 10px 22px;
+          background: transparent;
+          color: var(--ink-2);
+          text-decoration: none;
+          border: 1px solid var(--rule);
+          transition: all 0.2s;
+        }
+        .btn-ed-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+        /* ── Ticker strip ── */
+        .hero-ticker {
+          border-top: 1px solid var(--rule);
+          border-bottom: 3px double var(--ink);
+          padding: 0.7rem 0;
+          overflow: hidden;
+          position: relative;
+          background: var(--ink);
+        }
+        .ticker-track {
+          display: flex;
+          gap: 0;
+          animation: tickerScroll 28s linear infinite;
           width: max-content;
         }
-        .projects-track:hover { animation-play-state: paused; }
-        @keyframes scrollTrack {
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes tickerScroll {
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
         }
-        .project-card {
-          width: 350px;
-          height: 130px;
-          border-radius: 16px;
-          overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.08);
-          flex-shrink: 0;
+        .ticker-item {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 0 2rem;
+          font-family: 'DM Mono', monospace;
+          font-size: 0.68rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(245,240,232,0.7);
+          white-space: nowrap;
           cursor: pointer;
-          position: relative;
-          transition: transform 0.3s, border-color 0.3s;
+          border-right: 1px solid rgba(245,240,232,0.1);
+          transition: color 0.2s;
         }
-        .project-card:hover { transform: scale(1.04); border-color: rgba(167,139,250,0.3); }
-        .project-card img { width: 100%; height: 100%; object-fit: cover; }
-        .project-overlay {
+        .ticker-item:hover { color: var(--paper); }
+        .ticker-item-tag {
+          color: var(--accent-2);
+          font-size: 0.58rem;
+        }
+
+        /* ── Project scroll strip ── */
+        .hero-scroll-strip {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          border-top: 1px solid var(--rule);
+        }
+        @media (max-width: 800px) {
+          .hero-scroll-strip { grid-template-columns: repeat(2, 1fr); }
+        }
+        .scroll-card {
+          position: relative;
+          height: 180px;
+          overflow: hidden;
+          border-right: 1px solid var(--rule);
+          cursor: pointer;
+        }
+        .scroll-card:last-child { border-right: none; }
+        .scroll-card img {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+          filter: sepia(0.3) contrast(1.05);
+        }
+        .scroll-card:hover img { transform: scale(1.06); }
+        .scroll-card-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(7,5,26,0.92) 0%, rgba(7,5,26,0.4) 60%, transparent 100%);
+          background: linear-gradient(to top, rgba(26,18,8,0.85) 0%, rgba(26,18,8,0.2) 60%, transparent 100%);
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
-          padding: 10px 12px;
+          padding: 12px 14px;
+          transition: background 0.3s;
         }
-        .project-tag {
-          font-size: 0.6rem;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #a78bfa;
-          margin-bottom: 3px;
+        .scroll-card:hover .scroll-card-overlay {
+          background: linear-gradient(to top, rgba(139,26,26,0.88) 0%, rgba(139,26,26,0.3) 60%, transparent 100%);
         }
-        .project-name {
-          font-size: 0.78rem;
-          font-weight: 600;
-          color: #fff;
-          line-height: 1.3;
-        }
-        .scroll-indicator {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 6px;
-          margin-top: 3rem;
-          color: rgba(255,255,255,0.2);
-          font-size: 0.7rem;
+        .scroll-card-tag {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.58rem;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          animation: float 2.5s ease-in-out infinite;
+          color: rgba(245,240,232,0.6);
+          margin-bottom: 3px;
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(6px); }
-        }
-        .scroll-line {
-          width: 1px;
-          height: 48px;
-          background: linear-gradient(to bottom, rgba(167,139,250,0.6), transparent);
+        .scroll-card-name {
+          font-family: 'Playfair Display', serif;
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: var(--paper);
+          line-height: 1.25;
         }
       `}</style>
 
-      <div className="hero-section">
-        {/* Background */}
-        <div className="grid-bg"></div>
-        <div className="hero-orb" style={{ width: 500, height: 500, top: -150, left: "15%", background: "rgba(124,58,237,0.18)" }}></div>
-        <div className="hero-orb" style={{ width: 400, height: 400, bottom: 0, right: "10%", background: "rgba(236,72,153,0.12)" }}></div>
-        <div className="hero-orb" style={{ width: 300, height: 300, top: "30%", left: "5%", background: "rgba(96,165,250,0.08)" }}></div>
+      <section className="hero-section" id="hero">
+        {/* Masthead */}
+        <div className="hero-masthead">
+          <div className="hero-edition">
+            Available for opportunities · KIIT CSE · 2023–2027
+          </div>
+          <div className="hero-title-block">
+            <motion.span
+              className="hero-name"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              Diptadeep Sinha
+            </motion.span>
+            <motion.span
+              className="hero-title-line2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <span className="hero-role-cycle" ref={roleRef}></span>
+            </motion.span>
+          </div>
+          <motion.span
+            className="hero-ornament"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            ✦ ✦ ✦
+          </motion.span>
+        </div>
 
-        {/* Badge */}
-        <motion.div className="badge" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <span className="badge-dot"></span>
-          Available for opportunities · KIIT CSE · 2023-2027
-        </motion.div>
-
-        {/* Title */}
-        <motion.h1 className="hero-title" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-          Diptadeep Sinha
-          <br />
-          <span className="hero-gradient-text">builds systems</span>
-          <br />
-          that <span className="role-cycle" ref={roleRef}>scale</span>
-        </motion.h1>
-
-        {/* Sub */}
-        <motion.p className="hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
-          B.Tech CSE @ KIIT · CGPA 9.51 · MERN Stack · 350+ DSA problems.
-          Building real-time platforms, accessibility tools & backend systems that matter.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div className="hero-ctas" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-          <a href="#projects" className="btn-primary">View Projects</a>
-          <a href="https://github.com/Diptadeep-21" target="_blank" className="btn-ghost">GitHub ↗</a>
-          <a href="mailto:sinhadiptadeep@gmail.com" className="btn-ghost">sinhadiptadeep@gmail.com</a>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div className="stat-row" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}>
-          {[["9.51", "CGPA"], ["350+", "DSA Solved"], ["5+", "Systems Built"], ["SIH 2025", "Finalist"]].map(([n, l]) => (
-            <div key={l} className="stat-chip">
-              <span className="stat-num">{n}</span>
-              <span className="stat-label">{l}</span>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Project scroll */}
-        <motion.div className="projects-scroll" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
-          <div className="projects-track">
-            {[...PROJECTS, ...PROJECTS].map((p, i) => (
-              <div key={i} className="project-card" onClick={() => handleProjectClick(p.title)}>
-                <img src={p.img} alt={p.title} />
-                <div className="project-overlay">
-                  <div className="project-tag">{p.tag}</div>
-                  <div className="project-name">{p.title}</div>
-                </div>
+        {/* 3-column body */}
+        <motion.div
+          className="hero-body"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          {/* Left sidebar */}
+          <div className="hero-sidebar hero-sidebar-left">
+            <div>
+              <div className="sidebar-heading">Academic record</div>
+              <div className="sidebar-stat">
+                <span className="sidebar-stat-num">9.52</span>
+                <span className="sidebar-stat-label">CGPA at KIIT University</span>
               </div>
-            ))}
+            </div>
+            <div>
+              <div className="sidebar-heading">Problem solving</div>
+              <div className="sidebar-stat">
+                <span className="sidebar-stat-num">350+</span>
+                <span className="sidebar-stat-label">DSA problems solved</span>
+              </div>
+            </div>
+            <div>
+              <div className="sidebar-heading">Systems built</div>
+              <div className="sidebar-stat">
+                <span className="sidebar-stat-num">5+</span>
+                <span className="sidebar-stat-label">Production-ready systems</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Center */}
+          <div className="hero-center">
+            <p className="hero-lede hero-drop-cap">
+              <strong>Building systems that endure.</strong> A computer science student at KIIT with a singular focus on scalable, real-world software — from real-time platforms to accessibility-driven applications.
+            </p>
+            <div className="hero-body-text">
+              Diptadeep Sinha is pursuing B.Tech Computer Science at KIIT University, Bhubaneswar, maintaining a CGPA of 9.52 while building production-ready systems across the full stack.
+              <br /><br />
+              His engineering work spans real-time communication platforms, AI-assisted SaaS tools, machine learning pipelines, and accessibility-first applications — each project built from first principles to solve a genuine problem.
+              <br /><br />
+              A Smart India Hackathon 2025 Finalist, Diptadeep contributed to an AI-based space debris prediction system applying machine learning to real satellite safety challenges.
+            </div>
+            <div className="hero-cta-row">
+              <a href="#projects" className="btn-ed-primary">View Portfolio →</a>
+              <a href="https://github.com/Diptadeep-21" target="_blank" className="btn-ed-ghost">GitHub ↗</a>
+              <a href="mailto:sinhadiptadeep@gmail.com" className="btn-ed-ghost">Contact</a>
+            </div>
+          </div>
+
+          {/* Right sidebar */}
+          <div className="hero-sidebar hero-sidebar-right">
+            <div>
+              <div className="sidebar-heading">Distinction</div>
+              <p className="sidebar-note">
+                SIH 2025 Finalist — Selected among top teams nationally. Contributed to an AI-based space debris prediction system.
+              </p>
+            </div>
+            <div>
+              <div className="sidebar-heading">Core stack</div>
+              <div className="sidebar-tag-row">
+                {["Java", "MERN", "Next.js", "Spring Boot", "PostgreSQL", "TypeScript", "Python"].map(t => (
+                  <span key={t} className="sidebar-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="sidebar-heading">Status</div>
+              <p className="sidebar-note">
+                Open to internships, full-time roles & freelance projects.<br />
+                <a href="mailto:sinhadiptadeep@gmail.com" style={{ color: "var(--accent)", fontStyle: "italic" }}>sinhadiptadeep@gmail.com</a>
+              </p>
+            </div>
           </div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <div className="scroll-indicator">
-          <div className="scroll-line"></div>
-          Scroll
+        {/* Ticker */}
+        <div className="hero-ticker">
+          <div className="ticker-track">
+            {[...PROJECTS, ...PROJECTS].map((p, i) => (
+              <div key={i} className="ticker-item" onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>
+                <span className="ticker-item-tag">{p.tag}</span>
+                <span>{p.title}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+
+        {/* Project preview strip */}
+        <div className="hero-scroll-strip">
+          {PROJECTS.slice(0, 4).map((p, i) => (
+            <div
+              key={i}
+              className="scroll-card"
+              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              <img src={p.img} alt={p.title} />
+              <div className="scroll-card-overlay">
+                <div className="scroll-card-tag">{p.tag}</div>
+                <div className="scroll-card-name">{p.title}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

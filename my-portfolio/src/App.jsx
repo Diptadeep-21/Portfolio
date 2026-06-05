@@ -17,7 +17,7 @@ export default function App() {
       <Projects />
       <Stats />
       <Contact />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
