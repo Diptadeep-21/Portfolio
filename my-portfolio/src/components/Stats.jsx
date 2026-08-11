@@ -182,6 +182,94 @@ export default function Stats() {
           padding-bottom: 1px;
         }
         .stats-ext-link:hover { color: var(--ink); border-color: var(--ink); }
+
+        /* Unified Coding Dashboard */
+        .coding-editorial-dashboard {
+          border: 1px solid var(--rule);
+          margin-top: 2rem;
+          background: var(--paper);
+          padding: 1.5rem;
+        }
+        .dashboard-header {
+          border-bottom: 1px solid var(--rule);
+          padding-bottom: 0.75rem;
+          margin-bottom: 1.2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .dashboard-rubric {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.58rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--accent);
+        }
+        .dashboard-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--ink);
+        }
+        .dashboard-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.2rem;
+        }
+        @media (max-width: 600px) {
+          .dashboard-grid { grid-template-columns: 1fr; }
+        }
+        .dashboard-metric-card {
+          border: 1px solid var(--rule);
+          background: var(--paper-2);
+          padding: 1.2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          transition: background 0.2s, border-color 0.2s;
+        }
+        .dashboard-metric-card:hover {
+          background: var(--paper-3);
+          border-color: var(--ink-3);
+        }
+        .dashboard-metric-card .metric-num {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.75rem;
+          font-weight: 900;
+          color: var(--ink);
+          line-height: 1.1;
+        }
+        .dashboard-metric-card .metric-lbl {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.6rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--accent);
+          margin-bottom: 4px;
+        }
+        .dashboard-metric-card .metric-desc {
+          font-size: 0.82rem;
+          color: var(--ink-3);
+          line-height: 1.5;
+          margin-bottom: auto;
+        }
+        .dashboard-metric-card .metric-action {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.62rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--ink);
+          text-decoration: none;
+          border-bottom: 1px solid var(--ink);
+          width: fit-content;
+          margin-top: 8px;
+          padding-bottom: 1px;
+          transition: color 0.2s, border-color 0.2s;
+        }
+        .dashboard-metric-card .metric-action:hover {
+          color: var(--accent);
+          border-color: var(--accent);
+        }
       `}</style>
 
       <section className="stats-section" id="stats">
@@ -200,7 +288,7 @@ export default function Stats() {
           <div className="stats-sidebar">
             <div>
               <div className="stats-sidebar-heading">Consistency</div>
-              <div className="stats-big-num">400+</div>
+              <div className="stats-big-num">477</div>
               <div style={{ fontFamily: "'EB Garamond', serif", fontSize: "0.82rem", color: "var(--ink-3)", fontStyle: "italic", marginTop: 4 }}>DSA problems solved</div>
             </div>
             <div>
@@ -210,11 +298,17 @@ export default function Stats() {
             <div>
               <div className="stats-sidebar-heading">Profiles</div>
               <div className="stats-profile-links">
-                <a href="https://github.com/Diptadeep-21" target="_blank" className="stats-profile-link">
+                <a href="https://github.com/Diptadeep-21" target="_blank" rel="noopener noreferrer" className="stats-profile-link">
                   GitHub <span>↗</span>
                 </a>
-                <a href="https://leetcode.com/Diptadeep_Sinha" target="_blank" className="stats-profile-link">
+                <a href="https://leetcode.com/u/Diptadeep_Sinha/" target="_blank" rel="noopener noreferrer" className="stats-profile-link">
                   LeetCode <span>↗</span>
+                </a>
+                <a href="https://www.geeksforgeeks.org/profile/sinhadiptade2l7j" target="_blank" rel="noopener noreferrer" className="stats-profile-link">
+                  GeeksforGeeks <span>↗</span>
+                </a>
+                <a href="https://codolio.com/profile/eLSPNuJD" target="_blank" rel="noopener noreferrer" className="stats-profile-link">
+                  Codolio <span>↗</span>
                 </a>
               </div>
             </div>
@@ -245,12 +339,41 @@ export default function Stats() {
 
             <div className="stats-consistency-row">
               <p className="stats-consistency-text">
-                400+ DSA problems solved across LeetCode & other platforms. Active GitHub contributor building real-world systems. Focused on writing clean, optimal code every day.
+                477 DSA problems solved across LeetCode & GeeksforGeeks. Active GitHub contributor building real-world systems. Focused on writing clean, optimal code every day.
               </p>
-              {/* <div className="stats-links-row">
-                <a href="https://github.com/Diptadeep-21" target="_blank" className="stats-ext-link">GitHub ↗</a>
-                <a href="https://leetcode.com/Diptadeep_Sinha" target="_blank" className="stats-ext-link">LeetCode ↗</a>
-              </div> */}
+            </div>
+
+            {/* Unified Coding Dashboard */}
+            <div className="coding-editorial-dashboard">
+              <div className="dashboard-header">
+                <span className="dashboard-rubric">Editorial Summary</span>
+                <h3 className="dashboard-title">Unified Coding Index</h3>
+              </div>
+              <div className="dashboard-grid">
+                <div className="dashboard-metric-card">
+                  <span className="metric-num">477</span>
+                  <span className="metric-lbl">Total Problems Solved</span>
+                  <p className="metric-desc">Consolidated metrics from LeetCode, GeeksforGeeks, and other coding platforms.</p>
+                </div>
+                <div className="dashboard-metric-card">
+                  <span className="metric-num">LeetCode</span>
+                  <span className="metric-lbl">u/Diptadeep_Sinha</span>
+                  <p className="metric-desc">Focus on Dynamic Programming, Graph Theory, and Tree structures.</p>
+                  <a href="https://leetcode.com/u/Diptadeep_Sinha/" target="_blank" rel="noopener noreferrer" className="metric-action">View Profile →</a>
+                </div>
+                <div className="dashboard-metric-card">
+                  <span className="metric-num">GFG</span>
+                  <span className="metric-lbl">sinhadiptade2l7j</span>
+                  <p className="metric-desc">Deep focus on Core Data Structures, Algorithms, and standard interview problems.</p>
+                  <a href="https://www.geeksforgeeks.org/profile/sinhadiptade2l7j" target="_blank" rel="noopener noreferrer" className="metric-action">View Profile →</a>
+                </div>
+                <div className="dashboard-metric-card">
+                  <span className="metric-num">Codolio</span>
+                  <span className="metric-lbl">eLSPNuJD</span>
+                  <p className="metric-desc">Unified coding resume and ranking consolidation dashboard.</p>
+                  <a href="https://codolio.com/profile/eLSPNuJD" target="_blank" rel="noopener noreferrer" className="metric-action">View Dashboard →</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

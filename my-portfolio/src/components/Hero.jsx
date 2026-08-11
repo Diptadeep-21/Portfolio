@@ -419,7 +419,7 @@ export default function Hero() {
             <div>
               <div className="sidebar-heading">Problem solving</div>
               <div className="sidebar-stat">
-                <span className="sidebar-stat-num">350+</span>
+                <span className="sidebar-stat-num">477</span>
                 <span className="sidebar-stat-label">DSA problems solved</span>
               </div>
             </div>
