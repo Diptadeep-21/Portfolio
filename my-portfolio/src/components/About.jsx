@@ -5,14 +5,14 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transi
 export default function About() {
   const traits = [
     { label: "Scalable by design", body: "Every system I build is architected with scale in mind from day one — load-balanced, cache-aware, failure-tolerant." },
-    { label: "Precision problem solving", body: "350+ DSA problems have sharpened the way I approach algorithmic challenges — optimal before correct." },
+    { label: "Precision problem solving", body: "400+ DSA problems have sharpened the way I approach algorithmic challenges — optimal before correct." },
     { label: "Accessibility-first", body: "I build tools that work for everyone. Screen reader support, keyboard navigation, and WCAG compliance aren't afterthoughts." },
   ];
 
   const journey = [
     { year: "2022", event: "Enrolled in B.Tech CSE at KIIT University, Bhubaneswar" },
     { year: "2023", event: "Mastered MERN stack; crossed 100+ DSA problems on LeetCode" },
-    { year: "2024", event: "Delivered 5+ full-stack production systems; reached 350+ DSA" },
+    { year: "2024", event: "Delivered 5+ full-stack production systems; reached 400+ DSA" },
     { year: "2025", event: "SIH Finalist · Targeting top engineering roles in India & abroad" },
   ];
 
@@ -353,7 +353,7 @@ export default function About() {
               <div className="about-body-cols">
                 I enjoy breaking down complex problems and delivering production-ready solutions. Every system I build is designed with scale, correctness, and usability as the guiding principles — not as afterthoughts.
                 <br /><br />
-                The discipline comes from consistent practice: 350+ data structures and algorithms problems have shaped how I think about efficiency, edge cases, and system behaviour under load. That rigor carries into every project I ship.
+                The discipline comes from consistent practice: 400+ data structures and algorithms problems have shaped how I think about efficiency, edge cases, and system behaviour under load. That rigor carries into every project I ship.
               </div>
               <blockquote className="about-quote">
                 "I focus on building systems that are not just functional, but scalable, efficient, and meaningful."
@@ -367,7 +367,7 @@ export default function About() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                 {[
                   { num: "9.52", label: "CGPA at KIIT", desc: "Academic record" },
-                  { num: "350+", label: "DSA Problems", desc: "LeetCode & beyond" },
+                  { num: "400+", label: "DSA Problems", desc: "LeetCode & beyond" },
                   { num: "5+", label: "Systems Built", desc: "Production-ready" },
                   { num: "Top", label: "SIH 2025 Team", desc: "National finalist" },
                 ].map(s => (
@@ -391,7 +391,7 @@ export default function About() {
                 {[
                   { year: "2022", event: "Started B.Tech CSE at KIIT" },
                   { year: "2023", event: "MERN Stack development & 100+ DSA problems" },
-                  { year: "2024", event: "Built 5+ full-stack systems; hit 350+ DSA" },
+                  { year: "2024", event: "Built 5+ full-stack systems; hit 400+ DSA" },
                   { year: "2025", event: "SIH Finalist · Targeting top engineering roles" },
                 ].map((item, i) => (
                   <div key={i} className="timeline-item">
@@ -430,13 +430,13 @@ export default function About() {
               },
               {
                 issuer: "Cisco Networking Academy",
-                title: "Introduction to Networks",
+                title: "Cisco CCNA - Enterprise Networking, Security & Automation",
                 year: "2026",
                 credential: "https://www.credly.com/badges/6be1b044-f42f-4b2e-bee6-b8ea9719c5c1/public_url",
               },
               {
                 issuer: "Coursera",
-                title: "Introduction to DevOps",
+                title: "IBM DevOps & Software Engineering Courses",
                 year: "2026",
                 credential: "https://coursera.org/share/b8eff57b6c1e973c9dd78e69b900e87d",
               },

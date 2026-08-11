@@ -7,35 +7,55 @@ import restaurant from "../assets/food.png";
 import spotify from "../assets/spotify.png";
 import buildora from "../assets/buildora.png";
 import mer from "../assets/merchantaAI1.png";
+import aerovariance from "../assets/aerovariance.png";
+import savemyspot from "../assets/savemyspot.jpg";
 
 export const projects = [
-{
-  title: "Merchanta AI",
-  description:
-    "AI-powered representation optimizer that helps merchants improve visibility across AI shopping agents through semantic analysis, buyer-intent simulation, metadata diagnostics, and AI visibility scoring.",
-  tech: "Next.js + TypeScript + Node.js + Express.js + FastAPI + MongoDB + Zustand + RAG Pipelines",
-  github: "https://github.com/Diptadeep-21/AI-REPRESENTATION-OPTIMIZER",
-  live: "https://merchanta-ai-frontend.vercel.app",
-  image: mer,
-},
-{
-  title: "Glide-Way",
-  description:
-    "Full-stack bus booking platform with real-time tracking, role-based access, and analytics dashboard.",
-  tech: "MERN Stack",
-  github: "https://github.com/Diptadeep-21/Glide-Way",
-  live: "https://glide-way-frontend.onrender.com/",
-  image: bus,
-},
-{
-  title: "Buildora",
-  description:
-    "AI-powered platform that dynamically generates full-stack internal business applications from natural language prompts and JSON configurations.",
-  tech: "Next.js + Prisma ORM + PostgreSQL + Groq LLM",
-  github: "https://github.com/Diptadeep-21/Buildora",
-  live: "https://buildora-frontend.onrender.com/",
-  image: buildora,
-},
+  {
+    title: "Merchanta AI",
+    description:
+      "AI-powered representation optimizer that helps merchants improve visibility across AI shopping agents through semantic analysis, buyer-intent simulation, metadata diagnostics, and AI visibility scoring.",
+    tech: "Next.js + TypeScript + Node.js + Express.js + FastAPI + MongoDB + Zustand + RAG Pipelines",
+    github: "https://github.com/Diptadeep-21/AI-REPRESENTATION-OPTIMIZER",
+    live: "https://merchanta-ai-frontend.vercel.app",
+    image: mer,
+  },
+  {
+    title: "AeroVariance",
+    description:
+      "Urban air quality intelligence platform featuring an AI forecasting pipeline predicting AQI up to 72 hours ahead. Built with SHAP explainability, a policy what-if simulator, compound MongoDB indexing, and multilingual support.",
+    tech: "Next.js + FastAPI + MongoDB + XGBoost + Docker",
+    github: "https://github.com/Diptadeep-21/AeroVariance",
+    live: "https://aero-variance.vercel.app",
+    image: aerovariance,
+  },
+  {
+    title: "Glide-Way",
+    description:
+      "Full-stack bus booking platform with real-time tracking, role-based access, and analytics dashboard.",
+    tech: "MERN Stack",
+    github: "https://github.com/Diptadeep-21/Glide-Way",
+    live: "https://glide-way-frontend.onrender.com/",
+    image: bus,
+  },
+  {
+    title: "SaveMySpot",
+    description:
+      "Comprehensive event management platform featuring role-based authentication, interactive event registration, real-time attendee tracking, detailed analytics, and CSV data exports.",
+    tech: "Next.js + TypeScript + MongoDB + Tailwind CSS",
+    github: "https://github.com/Diptadeep-21/SaveMySpot",
+    live: "https://save-my-spot-xi.vercel.app",
+    image: savemyspot,
+  },
+  {
+    title: "Buildora",
+    description:
+      "AI-powered platform that dynamically generates full-stack internal business applications from natural language prompts and JSON configurations.",
+    tech: "Next.js + Prisma ORM + PostgreSQL + Groq LLM",
+    github: "https://github.com/Diptadeep-21/Buildora",
+    live: "https://buildora-frontend.onrender.com/",
+    image: buildora,
+  },
   {
     title: "Accessible Learning Platform",
     description:

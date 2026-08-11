@@ -299,7 +299,7 @@ export default function Skills() {
           </div>
           <div className="skills-footer-stats">
             <div className="skills-footer-stat">
-              <div className="skills-footer-stat-num">350+</div>
+              <div className="skills-footer-stat-num">400+</div>
               <div className="skills-footer-stat-lbl">DSA Problems</div>
             </div>
             <div className="skills-footer-stat">

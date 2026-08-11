@@ -5,7 +5,9 @@ import { useState } from "react";
 const TAG_MAP = {
   "Next.js + TypeScript + Node.js + Express.js + FastAPI + MongoDB + Zustand + RAG Pipelines":
     "Next.js",
+  "Next.js + FastAPI + MongoDB + XGBoost + Docker": "Next.js",
   "MERN Stack": "MERN",
+  "Next.js + TypeScript + MongoDB + Tailwind CSS": "Next.js",
   "Next.js + Prisma ORM + PostgreSQL + Groq LLM": "Next.js",
   "MERN + Web Speech API": "MERN",
   "Spring Boot + React": "Java",
@@ -21,7 +23,19 @@ const TECH_DISPLAY = {
     "MongoDB",
   ],
 
+  "Next.js + FastAPI + MongoDB + XGBoost + Docker": [
+    "Next.js",
+    "FastAPI",
+    "XGBoost",
+  ],
+
   "MERN Stack": ["MERN", "MongoDB", "Express"],
+
+  "Next.js + TypeScript + MongoDB + Tailwind CSS": [
+    "Next.js",
+    "MongoDB",
+    "Tailwind",
+  ],
 
   "Next.js + Prisma ORM + PostgreSQL + Groq LLM": [
     "Next.js",

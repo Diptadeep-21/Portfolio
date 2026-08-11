@@ -200,7 +200,7 @@ export default function Stats() {
           <div className="stats-sidebar">
             <div>
               <div className="stats-sidebar-heading">Consistency</div>
-              <div className="stats-big-num">350+</div>
+              <div className="stats-big-num">400+</div>
               <div style={{ fontFamily: "'EB Garamond', serif", fontSize: "0.82rem", color: "var(--ink-3)", fontStyle: "italic", marginTop: 4 }}>DSA problems solved</div>
             </div>
             <div>
@@ -245,7 +245,7 @@ export default function Stats() {
 
             <div className="stats-consistency-row">
               <p className="stats-consistency-text">
-                350+ DSA problems solved across LeetCode & other platforms. Active GitHub contributor building real-world systems. Focused on writing clean, optimal code every day.
+                400+ DSA problems solved across LeetCode & other platforms. Active GitHub contributor building real-world systems. Focused on writing clean, optimal code every day.
               </p>
               {/* <div className="stats-links-row">
                 <a href="https://github.com/Diptadeep-21" target="_blank" className="stats-ext-link">GitHub ↗</a>
