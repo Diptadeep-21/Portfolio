@@ -270,6 +270,68 @@ export default function Stats() {
           color: var(--accent);
           border-color: var(--accent);
         }
+
+        /* DSA Category Breakdown Styles */
+        .dsa-category-breakdown {
+          border: 1px solid var(--rule);
+          margin-top: 1.5rem;
+          background: var(--paper-2);
+          padding: 1.5rem;
+        }
+        .category-header {
+          border-bottom: 1px solid var(--rule);
+          padding-bottom: 0.5rem;
+          margin-bottom: 1.2rem;
+        }
+        .category-rubric {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.58rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--ink-3);
+        }
+        .category-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: var(--ink);
+        }
+        .category-bars {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .bar-item {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .bar-label-row {
+          display: flex;
+          justify-content: space-between;
+          font-size: 0.85rem;
+          color: var(--ink-2);
+        }
+        .bar-name {
+          font-family: 'Playfair Display', serif;
+          font-weight: 700;
+        }
+        .bar-percentage {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.72rem;
+          color: var(--accent);
+        }
+        .bar-track {
+          height: 6px;
+          background: var(--paper-3);
+          border: 1px solid var(--rule);
+          overflow: hidden;
+        }
+        .bar-fill {
+          height: 100%;
+          background: var(--accent);
+          transition: width 1s ease-in-out;
+        }
       `}</style>
 
       <section className="stats-section" id="stats">
@@ -372,6 +434,44 @@ export default function Stats() {
                   <span className="metric-lbl">eLSPNuJD</span>
                   <p className="metric-desc">Unified coding resume and ranking consolidation dashboard.</p>
                   <a href="https://codolio.com/profile/eLSPNuJD" target="_blank" rel="noopener noreferrer" className="metric-action">View Dashboard →</a>
+                </div>
+              </div>
+            </div>
+
+            {/* DSA Category Breakdown */}
+            <div className="dsa-category-breakdown">
+              <div className="category-header">
+                <span className="category-rubric">Syllabus Log</span>
+                <h4 className="category-title">DSA Topic Distribution</h4>
+              </div>
+              <div className="category-bars">
+                <div className="bar-item">
+                  <div className="bar-label-row">
+                    <span className="bar-name">Arrays & Hashing</span>
+                    <span className="bar-percentage">35% (167 problems)</span>
+                  </div>
+                  <div className="bar-track"><div className="bar-fill" style={{ width: "35%" }}></div></div>
+                </div>
+                <div className="bar-item">
+                  <div className="bar-label-row">
+                    <span className="bar-name">Dynamic Programming & Greedy</span>
+                    <span className="bar-percentage">25% (119 problems)</span>
+                  </div>
+                  <div className="bar-track"><div className="bar-fill" style={{ width: "25%" }}></div></div>
+                </div>
+                <div className="bar-item">
+                  <div className="bar-label-row">
+                    <span className="bar-name">Graphs & Trees</span>
+                    <span className="bar-percentage">22% (105 problems)</span>
+                  </div>
+                  <div className="bar-track"><div className="bar-fill" style={{ width: "22%" }}></div></div>
+                </div>
+                <div className="bar-item">
+                  <div className="bar-label-row">
+                    <span className="bar-name">Strings, Stacks & Queues</span>
+                    <span className="bar-percentage">18% (86 problems)</span>
+                  </div>
+                  <div className="bar-track"><div className="bar-fill" style={{ width: "18%" }}></div></div>
                 </div>
               </div>
             </div>

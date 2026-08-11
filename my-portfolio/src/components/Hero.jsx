@@ -344,9 +344,7 @@ export default function Hero() {
           flex-direction: column;
           justify-content: flex-end;
           padding: 12px 14px;
-          transition: background 0.3s;
-        }
-        .scroll-card:hover .scroll-card-overlay {
+          transitio        .scroll-card:hover .scroll-card-overlay {
           background: linear-gradient(to top, rgba(139,26,26,0.88) 0%, rgba(139,26,26,0.3) 60%, transparent 100%);
         }
         .scroll-card-tag {
@@ -364,8 +362,60 @@ export default function Hero() {
           color: var(--paper);
           line-height: 1.25;
         }
-      `}</style>
 
+        /* Hero Resume Card */
+        .hero-resume-card {
+          border: 1px solid var(--ink);
+          padding: 1.1rem;
+          background: var(--paper-2);
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          margin-top: 1.5rem;
+          transition: background 0.2s, border-color 0.2s;
+        }
+        .hero-resume-card:hover {
+          background: var(--paper-3);
+          border-color: var(--accent);
+        }
+        .hero-resume-card .card-rubric {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.55rem;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: var(--accent);
+        }
+        .hero-resume-card .card-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: var(--ink);
+          margin: 2px 0;
+        }
+        .hero-resume-card .card-desc {
+          font-size: 0.8rem;
+          color: var(--ink-3);
+          line-height: 1.4;
+          margin-bottom: 4px;
+        }
+        .hero-resume-card .card-btn {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.62rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--paper);
+          background: var(--ink);
+          text-decoration: none;
+          padding: 8px 12px;
+          transition: background 0.2s;
+          display: inline-block;
+        }
+        .hero-resume-card .card-btn:hover {
+          background: var(--accent);
+        }
+      `}</style>
+ 
       <section className="hero-section" id="hero">
         {/* Masthead */}
         <div className="hero-masthead">
@@ -399,7 +449,7 @@ export default function Hero() {
             ✦ ✦ ✦
           </motion.span>
         </div>
-
+ 
         {/* 3-column body */}
         <motion.div
           className="hero-body"
@@ -429,6 +479,12 @@ export default function Hero() {
                 <span className="sidebar-stat-num">5+</span>
                 <span className="sidebar-stat-label">Production-ready systems</span>
               </div>
+            </div>
+            <div className="hero-resume-card">
+              <span className="card-rubric">Curated Profile</span>
+              <h4 className="card-title">Curriculum Vitae</h4>
+              <p className="card-desc">Download a compiled record of engineering projects and academic credentials.</p>
+              <a href="/resume.pdf" download="Diptadeep_Sinha_Resume.pdf" className="card-btn">Download CV (PDF) ↓</a>
             </div>
           </div>
 

@@ -246,6 +246,32 @@ export default function About() {
           color: var(--paper);
         }
 
+        .academic-pullout {
+          padding: 1rem;
+          border: 1px solid var(--ink);
+          background: var(--paper-3);
+          color: var(--ink);
+        }
+        .academic-pullout-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.58rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--accent);
+          margin-bottom: 0.5rem;
+        }
+        .academic-pullout-text {
+          font-family: 'EB Garamond', serif;
+          font-size: 0.9rem;
+          line-height: 1.6;
+          font-style: italic;
+          color: var(--ink-2);
+        }
+        .academic-pullout-text strong {
+          font-style: normal;
+          color: var(--ink);
+        }
+
         /* Certifications band */
         .certs-section {
           border-top: 1px solid var(--rule);
@@ -382,7 +408,14 @@ export default function About() {
               <div className="hackathon-pullout">
                 <div className="hackathon-pullout-label">Distinction · SIH 2025</div>
                 <div className="hackathon-pullout-text">
-                  <strong>Smart India Hackathon 2025 Finalist</strong> — Selected among top teams nationally. Contributed to an AI-based space debris prediction system applying ML to real satellite safety challenges.
+                  <strong>Smart India Hackathon 2025 Finalist</strong> — Selected among top teams nationally. Contributed to an AI-based satellite collision risk prediction system.
+                </div>
+              </div>
+
+              <div className="academic-pullout">
+                <div className="academic-pullout-label">Honors · All India Rank 10</div>
+                <div className="academic-pullout-text">
+                  <strong>Class XII Board Exams (Science)</strong> — Secured **97.5% marks** and ranked in the **Top 10 nationally (AIR 10)** from Contai Public School.
                 </div>
               </div>
 
